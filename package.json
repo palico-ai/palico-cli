@@ -8,7 +8,7 @@
   "homepage": "https://github.com/palico-ai/palico-cli#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/palico-ai/palico-cli"
+    "url": "git+https://github.com/palico-ai/palico-cli.git"
   },
   "release": {
     "branches": [
@@ -19,7 +19,8 @@
     "palico": "lib/index.js"
   },
   "files": [
-    "lib/**/*"
+    "lib/**/*",
+    "templates/**/*"
   ],
   "publishConfig": {
     "access": "public"
