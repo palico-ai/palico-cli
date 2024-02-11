@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "module": "CommonJS",
+    "declaration": true,
+    "target": "es2021",
+    "moduleResolution": "Node",
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "rootDir": "src",
+    "outDir": "lib"
+  },
+  "include": ["src", ".eslintrc.js"],
+  "exclude": ["node_modules", "lib"]
+}

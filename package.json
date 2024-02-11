@@ -1,0 +1,50 @@
+{
+  "name": "palico",
+  "version": "0.0.0-development",
+  "description": "",
+  "bugs": {
+    "url": "https://github.com/palico-ai/palico-cli/issues"
+  },
+  "homepage": "https://github.com/palico-ai/palico-cli#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/palico-ai/palico-cli"
+  },
+  "release": {
+    "branches": [
+      "main"
+    ]
+  },
+  "bin": {
+    "palico": "lib/index.js"
+  },
+  "files": [
+    "lib/**/*"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "clean": "rm -rf ./dist",
+    "build": "tsc",
+    "semantic-release": "semantic-release",
+    "prepack": "npm run build"
+  },
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types.d.ts",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^11.1.0",
+    "fast-glob": "^3.3.2"
+  },
+  "devDependencies": {
+    "semantic-release": "^23.0.0",
+    "ts-node": "^10.9.1",
+    "tslib": "^2.6.2",
+    "typescript": "^4.9.5"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
