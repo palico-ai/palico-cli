@@ -6,11 +6,14 @@
   "license": "Apache-2.0",
   "scripts": {
     "palico": "palico-app",
-    "serve": "npm run palico sandbox serve",
+    "start": "docker-compose up",
+    "start:clean": "docker-compose up --build --force-recreate",
+    "dev": "npm run palico dev",
     "build": "tsc"
   },
   "dependencies": {
-    "@palico-ai/app": "^1.4.0",
+    "@palico-ai/app": "^1.6.0",
+    "dotenv": "^16.4.3",
     "openai": "^4.24.1",
     "zod": "^3.22.4"
   },
