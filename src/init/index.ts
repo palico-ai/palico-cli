@@ -1,26 +1,40 @@
-import * as path from 'path'
-import * as chalk from 'chalk'
-import { copyDirectory } from '../utils/copy'
+import * as path from "path";
+import * as chalk from "chalk";
+import { copyDirectory } from "../utils/copy";
+import { createFile } from "../utils/create_file";
+import { runCommands } from "../utils/run_command";
 
+const ENV_FILE_CONTENT = `
+# Add your OpenAI API key
+OPENAI_API_KEY=""
+# Add the model you want to use
+OPENAI_MODEL="gpt-3.5-turbo-0125"
+`;
 
 export const InitHandler = async (projectName: string) => {
-  console.log(projectName)
-  if(!projectName || projectName.length === 0) {
-    throw new Error('Project name is required')
+  if (!projectName || projectName.length === 0) {
+    throw new Error("Project name is required");
   }
-  console.log(`Initializing ${projectName}...`)
-  const templateDirectory = path.join(__dirname, '..', '..', 'templates', 'base')
-  const destinationDirectory = path.join(process.cwd(), projectName)
-  await copyDirectory(templateDirectory, destinationDirectory)
+  console.log(`Initializing ${projectName}...`);
+  const templateDirectory = path.join(
+    __dirname,
+    "..",
+    "..",
+    "templates",
+    "base"
+  );
+  const destinationDirectory = path.join(process.cwd(), projectName);
+  await copyDirectory(templateDirectory, destinationDirectory);
+  await runCommands([`cd ${projectName} && npm install`]);
+  await createFile(path.join(destinationDirectory, ".env"), ENV_FILE_CONTENT);
   const nextSteps = [
-    `cd ${projectName}`,
-    "npm install",
-    "Update LLM Model Config in src/index.ts",
-    "Run 'palico-cli dev' to start a local server"
-  ]
-  console.log(chalk.green('Project initialized!'))
-  console.log(chalk.blue('Next Steps:'))
+    `Navigate to the project directory: ${chalk.greenBright(`cd ${projectName}`)}`,
+    `Update ${chalk.greenBright(".env")} with your OpenAI API key and model`,
+    `Run ${chalk.greenBright("npm start")} to start the application`,
+  ];
+  console.log(chalk.green("Project initialized!"));
+  console.log(chalk.blue("Next Steps:"));
   nextSteps.forEach((step, index) => {
-    console.log(chalk.blue(`${index + 1}. ${step}`))
-  })
-}
+    console.log(chalk.blue(`${index + 1}. ${step}`));
+  });
+};
