@@ -9,21 +9,20 @@ services:
       - POSTGRES_PASSWORD=root
       - POSTGRES_DB=root
     ports:
-      # Standard port for PostgreSQL databases
-      - "5432:5432"
+      - 5432
   app:
     depends_on:
       - postgres_db
     build: .
     expose:
-      - "8000"
+      - ${API_PORT}
     ports:
-      - 8000:8000
+      - "${API_PORT}:${API_PORT}"
     volumes:
       - ./src:/app/src
     command: npm run dev
     environment:
       - DB_URL=postgres://root:root@postgres_db:5432/root
-      - PORT=8000
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY?error}
       - OPENAI_MODEL=${OPENAI_MODEL}
+      - PORT=${API_PORT}

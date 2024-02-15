@@ -4,11 +4,10 @@ import { copyDirectory } from "../utils/copy";
 import { createFile } from "../utils/create_file";
 import { runCommands } from "../utils/run_command";
 
-const ENV_FILE_CONTENT = `
-# Add your OpenAI API key
-OPENAI_API_KEY=""
-# Add the model you want to use
+const ENV_FILE_CONTENT = `OPENAI_API_KEY=""
 OPENAI_MODEL="gpt-3.5-turbo-0125"
+API_PORT=8000
+JWT_SECRET="secret"
 `;
 
 export const InitHandler = async (projectName: string) => {
