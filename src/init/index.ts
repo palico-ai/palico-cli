@@ -6,7 +6,7 @@ import { runCommands } from "../utils/run_command";
 
 const ENV_FILE_CONTENT = `OPENAI_API_KEY=""
 OPENAI_MODEL="gpt-3.5-turbo-0125"
-API_PORT=8002
+API_PORT=8000
 JWT_SECRET="secret"
 `;
 
